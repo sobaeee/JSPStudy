@@ -13,8 +13,8 @@ String password = "smart";
 
 StringBuffer qry = new StringBuffer();
 qry.append(" SELECT uid, uname, schoolname FROM g_member "); 
-qry.append(" WHERE uid = ? AND upw = sha(?) ");
-//join02ACT에 sha(?) 이용시. 이 곳 upw에도 똑같이 sha(?) 로 작성 해야 값이 맞아 로그인이 된다.
+qry.append(" WHERE uid = ? AND upw = ? ");
+
 
 String sql = qry.toString();
 

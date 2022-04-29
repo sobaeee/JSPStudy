@@ -37,8 +37,8 @@ String password = "smart";
 StringBuffer qry = new StringBuffer();
 
 qry.append(" INSERT INTO g_member (uname, schoolname, gradeclass, uid, upw, route, boardingplace, joindate) ");
-qry.append(" VALUES (?,?,?,?,sha1(?),?,?,now()) ");
-//sha1(?)   << 비밀번호를 암호화 시켜서 mysql에 추가시킴
+qry.append(" VALUES (?,?,?,?,?,?,?,now()) ");
+
 
 String sql = qry.toString();
 
