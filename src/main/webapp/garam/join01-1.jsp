@@ -8,7 +8,8 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body class="page07">
@@ -18,13 +19,11 @@
 
 	<div class="pd16">
 		<form action="join02.jsp" method="post">
-		<input type="hidden" name="agree" id="agree" value=""/>
-		
+			<input type="hidden" name="agree" id="agree" value="" />
 
 			<div class="joinbox">
 				<label for="agree1">서비스 이용약관 동의</label> <input type='checkbox'
-				id="agree1" name='' value='Y' />
-
+					id="agree1" name='' value='Y' />
 				<div class="terms">
 					<b>제1조 목적</b><br>
 					<br> 이 약관은 가람관광여행사(이하"회사"라 한다)이 운영하는 garamtour.kr (이하"사이트"라
@@ -164,7 +163,7 @@
 			</div>
 
 			<div class="joinbox">
-				<label for="agree3">개인정보 3자 제공 동의</label> <input type='checkbox'
+				<label for="agree3">개인정보 3차 제공 동의</label> <input type='checkbox'
 					id="agree3" name='' value='Y' />
 				<div class="terms">
 					가람관광여행사의 스키관련 패키지의 신청및 숙박,기타 상품 의 예약을 위하여 아래와 같이 개인정보를 수집,이용 및
@@ -199,52 +198,95 @@
 			</div>
 
 			<div class="joinbtn w100 tC">
+				<div>
+					<input type="checkbox" id="allagree"> 전체 동의
+				</div>
 				<button type="button" onclick="history.go(-1);">취소</button>
 				<button type="submit">확인</button>
-				<!-- <button onclick="location.href='join02.jsp'">확인</button> -->
 			</div>
 		</form>
 	</div>
 	<script>
-	$(document).ready(function(){
-		console.log($("button[type=submit]").on("click", function(){
-			var agree1 = $("#agree1").prop("checked");
-			var agree2 = $("#agree2").prop("checked");
-			var agree3 = $("#agree3").prop("checked");
-			
-			if(!agree1 || !agree2 || !agree3){
-				alert("약관에 전체동의 하셔야 합니다.");
-				return false;
-			} else {
-				$("#agree").val("Y");
-				return true;
+		$(document).ready(function() {
+
+			var a1 = 0;
+
+			$("#agree1").on("click", function() {
+				if ($("#agree1").prop("checked")) {
+					a1 += 1;
+				} else {
+					a1 -= 1;
+				}
+				allChk();
+			});
+
+			$("#agree2").on("click", function() {
+				if ($("#agree2").prop("checked")) {
+					a1 += 1;
+				} else {
+					a1 -= 1;
+				}
+				allChk();
+			});
+
+			$("#agree3").on("click", function() {
+				if ($("#agree3").prop("checked")) {
+					a1 += 1;
+				} else {
+					a1 -= 1;
+				}
+				allChk();
+			});
+
+			function allChk() {
+				if (a1 == 3) {
+					$("#allagree").prop("checked", true);
+				} else {
+					$("#allagree").prop("checked", false);
+				}
+
 			}
 
-		}));
-	});
-	
-	
-	
-		function frmchk(){
+			$("button[type=submit]").on("click", function() {
+				var agree1 = $("#agree1").prop("checked");
+				var agree2 = $("#agree2").prop("checked");
+				var agree3 = $("#agree3").prop("checked");
+
+				if (!agree1 || !agree2 || !agree3) {
+					alert("약관에 전체 동의하셔야합니다");
+					return false;
+				} else {
+					$("#agree").val("Y");
+					return true;
+				}
+
+			});
+		});
+
+		function frmchk() {
 			var agree1 = $("#agree1").prop("checked");
 			var agree2 = $("#agree2").prop("checked");
 			var agree3 = $("#agree3").prop("checked");
-			if(!agree1){
-				alert("서비스 이용약관 동의 체크하세요.");
+			if (!agree1) {
+				alert("서비스 이용약관 동의에 체크하셔야 합니다.");
 				return false;
 			}
-			
-			if(!agree2){
-				alert("개인정보 수집 및 이용 동의에 체크하세요.");
+			if (!agree2) {
+				alert("개인정보 수집 및 이용 동의에 체크하셔야 합니다.");
 				return false;
 			}
-			
-			if(!agree3){
-				alert("개인정보 3자 제공 동의에 체크하세요.");
+			if (!agree3) {
+				alert("개인정보 3차 제공 동의에 체크하셔야 합니다.");
 				return false;
 			}
+
 			return true;
 		}
 	</script>
 </body>
 </html>
+
+
+
+
+

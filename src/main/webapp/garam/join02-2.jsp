@@ -63,6 +63,7 @@
             <h4>노선</h4>
             <div class="sltbox">
                 <select name="route" id = "route">
+                    <option value="N">선택</option>
                     <option value="A">A노선</option>
                     <option value="B">B노선</option>
                     <option value="C">C노선</option>
@@ -74,6 +75,7 @@
             <h4 class="inline">탑승장소</h4> <span>(※노선을 먼저 선택해주세요)</span>
             <div class="sltbox">
                 <select name="boardingplace" id = "pl">
+                	<option value="N">선택</option>
                     <option value="A">A장소</option>
                     <option value="B">B장소</option>
                     <option value="C">C장소</option>
@@ -87,9 +89,37 @@
         </form>
     </div>
     <script>
+    
+    function chkName(str){
+    	   var nameCheck = /^[가-힣]{2,6}$/;
+    	   if(!nameCheck.test(str)){
+    	      return false;
+    	   }
+    	   return true;
+    	}
 
     $(document).ready(function(){
- 
+    	
+    	
+    	 $('#go').click(function(){
+    	      
+    	      if($('#uname').val() == 0){
+    	         alert("이름을 입력하세요");
+    	         $('#uname').focus();
+    	         return false;
+    	      }      
+    	      if(!chkName($('#uname').val())){
+    	         console.log("잘못됨"+$('#uname').val());
+    	         alert("올바른 형식의 이름을 입력하세요");
+    	         $('#uname').val('');
+    	         $('#uname').focus();
+    	         return false;
+    	      }
+    	   });
+
+    	//key up으로 한글입력칸에 한글 외 입력시 경고창 뜨게 해보기.
+    	
+    	
     	$("#go").click(function(){
     		if($("#uname").val() == ''){
         		alert("이름을 입력하세요.");
